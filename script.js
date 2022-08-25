@@ -1,5 +1,29 @@
-var calc = document.querySelector('.calc'); 
-calc.focus();
+var calc = document.querySelector('.calc'),
+    result = document.querySelector('.result');
+
+    calc.value = '0';
+    calc.focus();
+    calc.ariaValueMax = 12;
+
+document.addEventListener('keypress', function(e){
+    let num = ['1','2','3','4','5','6','7','8','9'];
+    if(calc.value === '0' & e.key in num){
+        calc.value = ""
+    }
+    if(e.key === 'Enter'){
+        igual();
+    }
+}, false);
+
+function calcular(event){
+    let num = ['1','2','3','4','5','6','7','8','9'];
+    if(calc.value === '0' & event in num){
+        calc.value = event;
+    }
+    else{
+        calc.value += event;
+    }
+}        
 
 function conhex(c){
     const l = {'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15};
@@ -13,10 +37,6 @@ function conhex(c){
     }          
     return c;
 }
-
-function calcular(event){            
-    calc.value += event;
-}        
 
 function igual(){
     let numCalc = Array.from(calc.value),
@@ -45,22 +65,15 @@ function igual(){
     n0 = parseFloat(n0);
     n1 = parseFloat(n1);
 
-    if (op === "+") {
-        r = n0 + n1;
-    }
-    else if(op === "-"){
-        r = n0 - n1;
-    }
-    else if(op === "x" | op === "*"){
-        r = n0 * n1;
-    }
-    else if(op === "÷" | op === "/"){
-        r = n0 / n1;
-    }
-    else if(op === "√"){
-        r = Math.sqrt(n1);
-    }
-    calc.value = r;          
+    if (op === "+") {r = n0 + n1;}
+    else if(op === "-"){r = n0 - n1;}
+    else if(op === "×" | op === "*"){r = n0 * n1;}
+    else if(op === "÷" | op === "/"){r = n0 / n1;}
+    else if(op === "√"){r = Math.sqrt(n1);}
+    else if(op === "%"){r = (n0 * n1) / 100;}
+    
+    result.value = calc.value;
+    calc.value = r;       
 }
 
 function clean(){
@@ -75,62 +88,29 @@ function clean(){
     calc.value = l;
 }
 
-function calcPi(){
-    calc.value += "3.14159265359";
-} 
-
 function reset(){
-    calc.value = "";
+    calc.value = 0;
+    result.value = "";
     calc.focus();          
 }
 
-document.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-        igual();
-    }
-}, false);
+function base(b){
+    if(b === 'bin'){b = 2;}
+    else if(b === 'oct'){b = 8;} 
+    else if(b === 'hex'){b = 16;}
 
-function bin(){
-    let n = parseInt(calc.value),
-    b = 2,
+    let n = parseInt(calc.value),    
     l = [];
-    while (n >= b){
-        m = n % b;
-        l.push(m);    
-        n = ~~(n / b);
-    }
-    l.push(n);
-    l.reverse();
 
-    calc.value = l.join("");
-}
-
-function oct(){
-    let n = parseInt(calc.value);
-    b = 8,
-    l = [];
-    while (n >= b){
-        m = n % b;
-        l.push(m);    
-        n = ~~(n / b);
-    }
-    l.push(n);
-    l.reverse();
-
-    calc.value = l.join("");
-}
-
-function hex(){
-    let n = parseInt(calc.value),
-    b = 16,
-    l = [];
     while (n >= b){
         m = n % b;
         l.push(conhex(m));    
         n = ~~(n / b);
     }
+
     l.push(conhex(n));
     l.reverse();
 
+    result.value = calc.value;
     calc.value = l.join("");
 }
