@@ -3,7 +3,6 @@ var calc = document.querySelector('.calc'),
 
     calc.value = '0';
     calc.focus();
-    calc.ariaValueMax = 12;
 
 document.addEventListener('keypress', function(e){
     let num = ['1','2','3','4','5','6','7','8','9'];
@@ -16,13 +15,15 @@ document.addEventListener('keypress', function(e){
 }, false);
 
 function calcular(event){
-    let num = ['1','2','3','4','5','6','7','8','9'];
-    if(calc.value === '0' & event in num){
-        calc.value = event;
-    }
-    else{
-        calc.value += event;
-    }
+    let ch = ['1','2','3','4','5','6','7','8','9'];
+    if(calc.value.length < 14){
+        if(calc.value === '0' & event in ch | event === '√'){
+            calc.value = event;
+        }
+        else{
+            calc.value += event;
+        }
+    }    
 }        
 
 function conhex(c){
@@ -73,7 +74,7 @@ function igual(){
     else if(op === "%"){r = (n0 * n1) / 100;}
     
     result.value = calc.value;
-    calc.value = r;       
+    calc.value = r.toString().substring(0, 14);      
 }
 
 function clean(){
