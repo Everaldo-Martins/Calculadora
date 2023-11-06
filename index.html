@@ -6,40 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <meta name="author" content="Everaldo Martins">
-    <link rel="shortcut icon" href="data:image/png;base64,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" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="essets/img/favoricon.png" type="image/x-icon">
+    <link rel="stylesheet" href="essets/css/reset.css">
+    <link rel="stylesheet" href="essets/css/style.css">
 </head>
 <body>
-    <section>        
-        <input type="text" class="result" disabled>
-        <input type="text" class="calc" minlength="1" maxlength="14">
-        <div class="container">            
-            <input type="button" class="item small" value="bin" onclick="base(this.value)">
-            <input type="button" class="item small" value="oct" onclick="base(this.value)">
-            <input type="button" class="item small" value="hex" onclick="base(this.value)">
-            <input type="button" class="item" value="&#99;" onclick="reset()">
-            <input type="button" class="item" value="&#8592;" onclick="clean()">                                             
-            <input type="button" class="item" value="7" onclick="calcular(this.value)">            
-            <input type="button" class="item" value="8" onclick="calcular(this.value)">
-            <input type="button" class="item" value="9" onclick="calcular(this.value)">
-            <input type="button" class="item" value="&#8730;" onclick="calcular(this.value)">
-            <input type="button" class="item" value="&#37;" onclick="calcular(this.value)">
-            <input type="button" class="item" value="4" onclick="calcular(this.value)">
-            <input type="button" class="item" value="5" onclick="calcular(this.value)">             
-            <input type="button" class="item" value="6" onclick="calcular(this.value)">
-            <input type="button" class="item" value="&#215;" onclick="calcular(this.value)">            
-            <input type="button" class="item" value="&#247;" onclick="calcular(this.value)">                     
-            <input type="button" class="item" value="1" onclick="calcular(this.value)">
-            <input type="button" class="item" value="2" onclick="calcular(this.value)">
-            <input type="button" class="item" value="3" onclick="calcular(this.value)">
-            <input type="button" class="item" value="-" onclick="calcular(this.value)">
-            <input type="button" class="item great" value="&#43;" onclick="calcular(this.value)">            
-            <input type="button" class="item" value="0" onclick="calcular(this.value)">
-            <input type="button" class="item" value="00" onclick="calcular(this.value)">
-            <input type="button" class="item" value="." onclick="calcular(this.value)">           
-            <input type="button" class="item" value="&#61;" onclick="igual()">
-        </div>
+    <section class="leftcollum">
+
     </section>
-    <script src="script.js"></script>
+    <section class="calculadora">        
+        <script src="essets/js/data.js"></script>
+    </section>
+    <script src="essets/js/script.js"></script>
 </body>
 </html>
